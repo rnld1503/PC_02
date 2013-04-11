@@ -16,24 +16,25 @@ import pe.com.pc2.dao.StudentDAO;
  *
  * @author Ronalc
  */
-@Path("/hello")
+@Path("/students")
 public class StudentService {
     
     public StudentDAO dao = new StudentDAO();
     
     @GET
     @Produces(MediaType.TEXT_XML)
-    public String getNombre(){
+    public String getEstudiantes(){
         
         return dao.obtenerEstudiantes();
     }
     
     
-    @POST
+    
+    @Path("{id}")
     @Produces(MediaType.TEXT_XML)
-    public String getNombre(@FormParam("id")String idBoster){
+    public String getEstudiante(@FormParam("id") String id){
         
-        return "<?xml version=\"1.0\"?>" + "<hello> Hello"+
-                "Jersey" + "</hello>";
+        return dao.obtenerEstudiante(id);
     }
+    
 }
